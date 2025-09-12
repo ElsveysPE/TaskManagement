@@ -1,9 +1,7 @@
 package org.elsveys.entity;
 
 import jakarta.persistence.*;
-import org.elsveys.enums.statusTask;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.elsveys.enums.StatusTask;
 
 import java.util.Date;
 
@@ -20,7 +18,7 @@ public class Task {
     private String description;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private statusTask statusTask;
+    private StatusTask statusTask;
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
@@ -53,11 +51,11 @@ public class Task {
         this.description = description;
     }
 
-    public org.elsveys.enums.statusTask getStatusTask() {
+    public StatusTask getStatusTask() {
         return statusTask;
     }
 
-    public void setStatusTask(org.elsveys.enums.statusTask statusTask) {
+    public void setStatusTask(StatusTask statusTask) {
         this.statusTask = statusTask;
     }
 

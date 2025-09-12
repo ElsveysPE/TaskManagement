@@ -3,7 +3,7 @@ package org.elsveys.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import org.elsveys.enums.userRole;
+import org.elsveys.enums.UserRole;
 @Entity
 @Table(name = "users")
 public class User {
@@ -19,7 +19,7 @@ public class User {
     private String specialization;
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private userRole userRole;
+    private UserRole userRole;
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
     @Column(name = "deleted_at")
@@ -73,11 +73,11 @@ public class User {
         this.email = email;
     }
 
-    public org.elsveys.enums.userRole getUserRole() {
+    public UserRole getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(org.elsveys.enums.userRole userRole) {
+    public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
 }

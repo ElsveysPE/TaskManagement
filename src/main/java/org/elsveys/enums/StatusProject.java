@@ -1,6 +1,6 @@
 package org.elsveys.enums;
 
-public enum statusProject {
+public enum StatusProject {
     ACTIVE,
     COMPLETED
 }

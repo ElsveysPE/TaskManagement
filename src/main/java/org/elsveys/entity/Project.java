@@ -1,7 +1,7 @@
 package org.elsveys.entity;
 
 import jakarta.persistence.*;
-import org.elsveys.enums.statusProject;
+import org.elsveys.enums.StatusProject;
 
 import java.util.Date;
 @Entity
@@ -17,7 +17,7 @@ public class Project {
     private String description;
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private statusProject statusProject;
+    private StatusProject statusProject;
     @Column(name = "deadline", nullable = false)
     private Date deadline;
     @Column(name = "is_deleted", nullable = false)
@@ -49,11 +49,11 @@ public class Project {
         this.description = description;
     }
 
-    public statusProject getStatusProject() {
+    public StatusProject getStatusProject() {
         return statusProject;
     }
 
-    public void setStatusProject(statusProject statusProject) {
+    public void setStatusProject(StatusProject statusProject) {
         this.statusProject = statusProject;
     }
 
