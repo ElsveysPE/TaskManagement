@@ -1,0 +1,87 @@
+package org.elsveys.entity;
+
+import jakarta.persistence.*;
+import org.elsveys.enums.statusTask;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.Date;
+
+@Entity
+@Table(name = "tasks")
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private int id;
+    @Column(name = "name", nullable = false, length = 50)
+    private String name;
+    @Column(name = "description", nullable = false, length = 50)
+    private String description;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private statusTask statusTask;
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted;
+    @Column(name = "deleted_at")
+    private Date deletedAt;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public org.elsveys.enums.statusTask getStatusTask() {
+        return statusTask;
+    }
+
+    public void setStatusTask(org.elsveys.enums.statusTask statusTask) {
+        this.statusTask = statusTask;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+}
