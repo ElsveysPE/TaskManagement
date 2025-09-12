@@ -8,7 +8,7 @@ public class Credentials {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
     @Column(name = "alias", nullable = false, length = 50)
     private String alias;
     @Column(name = "password", nullable = false, length = 500)
