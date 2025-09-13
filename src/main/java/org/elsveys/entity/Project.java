@@ -24,7 +24,9 @@ public class Project {
     private boolean isDeleted;
     @Column(name = "deleted_at")
     private Date deletedAt;
-
+    @OneToMany
+    @JoinColumn(name = "teamlead_id", nullable = false)
+    private User teamlead;
     public int getId() {
         return id;
     }
@@ -79,5 +81,13 @@ public class Project {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public User getTeamlead() {
+        return teamlead;
+    }
+
+    public void setTeamlead(User teamlead) {
+        this.teamlead = teamlead;
     }
 }
