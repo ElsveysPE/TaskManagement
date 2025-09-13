@@ -19,12 +19,12 @@ public class TaskService {
                 .orElseThrow(() -> new RuntimeException("Not found"));
     }
 
-    public void createTask(Task task){
-        taskRepository.save(task);
+    public Task createTask(Task task){
+        return taskRepository.save(task);
     }
 
-    public void updateTask(Task task){
-        taskRepository.save(task);
+    public Task updateTask(Task task){
+        return taskRepository.save(task);
     }
 
     public void softDeleteTask(Integer id){

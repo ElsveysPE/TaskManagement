@@ -25,12 +25,12 @@ public class ProjectService {
                 .orElseThrow(() -> new RuntimeException("Not found"));
     }
 
-    public void createProject(Project project){
-        projectRepository.save(project);
+    public Project createProject(Project project){
+        return projectRepository.save(project);
     }
 
-    public void updateProject(Project project){
-        projectRepository.save(project);
+    public Project updateProject(Project project){
+        return projectRepository.save(project);
     }
 
     public void softDeleteProject(Integer id){
