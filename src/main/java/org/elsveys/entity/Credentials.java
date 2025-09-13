@@ -2,6 +2,8 @@ package org.elsveys.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "credentials")
 public class Credentials {
@@ -16,6 +18,11 @@ public class Credentials {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted;
+    @Column(name = "deleted_at")
+    private Date deletedAt;
 
     public int getId() {
         return id;
@@ -47,5 +54,21 @@ public class Credentials {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 }
