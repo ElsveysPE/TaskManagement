@@ -2,7 +2,7 @@ package org.elsveys.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "credentials")
@@ -22,7 +22,7 @@ public class Credentials {
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
     @Column(name = "deleted_at")
-    private Date deletedAt;
+    private LocalDate deletedAt;
 
     public int getId() {
         return id;
@@ -56,11 +56,11 @@ public class Credentials {
         this.user = user;
     }
 
-    public Date getDeletedAt() {
+    public LocalDate getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(LocalDate deletedAt) {
         this.deletedAt = deletedAt;
     }
 

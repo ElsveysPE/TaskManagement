@@ -2,7 +2,7 @@ package org.elsveys.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "assignments")
@@ -18,11 +18,11 @@ public class Assignment {
     @JoinColumn(name = "task_id", nullable = false)
     private Task task;
     @Column(name = "deadline", nullable = false)
-    private Date deadline;
+    private LocalDate deadline;
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
     @Column(name = "deleted_at")
-    private Date deletedAt;
+    private LocalDate deletedAt;
 
     public int getId() {
         return id;
@@ -48,11 +48,11 @@ public class Assignment {
         this.task = task;
     }
 
-    public Date getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
@@ -64,11 +64,11 @@ public class Assignment {
         isDeleted = deleted;
     }
 
-    public Date getDeletedAt() {
+    public LocalDate getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(LocalDate deletedAt) {
         this.deletedAt = deletedAt;
     }
 }

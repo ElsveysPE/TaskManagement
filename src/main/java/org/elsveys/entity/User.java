@@ -2,7 +2,7 @@ package org.elsveys.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import org.elsveys.enums.UserRole;
 @Entity
 @Table(name = "users")
@@ -23,7 +23,7 @@ public class User {
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
     @Column(name = "deleted_at")
-    private Date deletedAt;
+    private LocalDate deletedAt;
 
     public int getId() {
         return id;
@@ -57,11 +57,11 @@ public class User {
         isDeleted = deleted;
     }
 
-    public Date getDeletedAt() {
+    public LocalDate getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(LocalDate deletedAt) {
         this.deletedAt = deletedAt;
     }
 
