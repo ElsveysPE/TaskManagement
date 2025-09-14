@@ -4,7 +4,13 @@ import jakarta.persistence.EntityManager;
 import org.elsveys.entity.Credentials;
 import org.elsveys.repository.CredentialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+@Service
+@Transactional
 public class CredentialsService {
     private final CredentialsRepository credentialsRepository;
     private final EntityManager entityManager;
@@ -38,5 +44,9 @@ public class CredentialsService {
         entityManager.createNativeQuery("CALL restore_credentials(:id)")
                 .setParameter("id", id)
                 .executeUpdate();
+    }
+
+    public List<Credentials> getAllCredentials(){
+        return credentialsRepository.findAll();
     }
 }

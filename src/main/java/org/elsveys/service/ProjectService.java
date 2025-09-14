@@ -5,12 +5,17 @@ import org.elsveys.dto.OverdueTaskDTO;
 import org.elsveys.entity.Project;
 import org.elsveys.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
+@Transactional
 public class ProjectService {
     private final ProjectRepository projectRepository;
     private final EntityManager entityManager;
@@ -45,8 +50,8 @@ public class ProjectService {
                 .executeUpdate();
     }
 
-    public Set<String> findUnassignedTasks(Integer id){
-        Set<String> result = new HashSet<>();
+    public List<String> findUnassignedTasks(Integer id){
+        List<String> result = new ArrayList<>();
         List<?> rows = entityManager.createNativeQuery("SELECT find_unassigned_tasks(:id)")
                 .setParameter("id", id)
                 .getResultList();
@@ -75,6 +80,10 @@ public class ProjectService {
                 .setParameter("id", id)
                 .getSingleResult();
         return result.doubleValue();
+    }
+
+    public List<Project> getAllProjects(){
+        return projectRepository.findAll();
     }
 
 }

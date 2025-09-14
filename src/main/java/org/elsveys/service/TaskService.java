@@ -4,7 +4,13 @@ import jakarta.persistence.EntityManager;
 import org.elsveys.entity.Task;
 import org.elsveys.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+@Service
+@Transactional
 public class TaskService {
     private final TaskRepository taskRepository;
     private final EntityManager entityManager;
@@ -37,5 +43,9 @@ public class TaskService {
         entityManager.createNativeQuery("CALL restore_task(:id)")
                 .setParameter("id", id)
                 .executeUpdate();
+    }
+
+    public List<Task> getAllTasks(){
+        return taskRepository.findAll();
     }
 }

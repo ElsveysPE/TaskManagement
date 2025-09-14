@@ -6,7 +6,13 @@ import org.elsveys.entity.User;
 import org.elsveys.repository.CredentialsRepository;
 import org.elsveys.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+@Service
+@Transactional
 public class UserService {
     private final UserRepository userRepository;
     private final EntityManager entityManager;
@@ -46,5 +52,9 @@ public class UserService {
         return (Integer) entityManager.createNativeQuery("SELECT count_tasks(:id)")
                 .setParameter("id", id)
                 .getSingleResult();
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
     }
 }
