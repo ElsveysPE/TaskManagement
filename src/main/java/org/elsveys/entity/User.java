@@ -3,7 +3,11 @@ package org.elsveys.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+
 import org.elsveys.enums.UserRole;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,8 +21,9 @@ public class User {
     private String email;
     @Column(name = "specialization", nullable = false, length = 25)
     private String specialization;
-    @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;

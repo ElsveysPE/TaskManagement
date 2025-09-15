@@ -2,6 +2,8 @@ package org.elsveys.entity;
 
 import jakarta.persistence.*;
 import org.elsveys.enums.StatusTask;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.time.LocalDate;
 
@@ -16,8 +18,9 @@ public class Task {
     private String name;
     @Column(name = "description", nullable = false, length = 50)
     private String description;
-    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    @Enumerated(EnumType.STRING)
     private StatusTask statusTask;
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)

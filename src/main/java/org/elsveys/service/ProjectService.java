@@ -3,11 +3,16 @@ package org.elsveys.service;
 import jakarta.persistence.EntityManager;
 import org.elsveys.dto.OverdueTaskDTO;
 import org.elsveys.entity.Project;
+import org.elsveys.entity.User;
+import org.elsveys.enums.StatusTask;
 import org.elsveys.repository.ProjectRepository;
+import org.elsveys.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,10 +23,13 @@ import java.util.stream.Collectors;
 @Transactional
 public class ProjectService {
     private final ProjectRepository projectRepository;
+    private final UserRepository userRepository;
     private final EntityManager entityManager;
-    @Autowired
-    public ProjectService(ProjectRepository projectRepository ,EntityManager entityManager){
+
+    public ProjectService(ProjectRepository projectRepository, UserRepository userRepository,
+            EntityManager entityManager){
         this.projectRepository = projectRepository;
+        this.userRepository = userRepository;
         this.entityManager = entityManager;
     }
 
@@ -86,4 +94,11 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public List<Project> getAllMyProjects(Integer teamleadId) {
+        return projectRepository.findByTeamleadId(teamleadId);
+    }
+
+    public Integer getUserIdByUsername(String username) {
+        return userRepository.findIdByUsername(username);
+    }
 }

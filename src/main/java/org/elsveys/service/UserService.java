@@ -17,7 +17,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final EntityManager entityManager;
 
-    @Autowired
     public UserService(UserRepository userRepository, EntityManager entityManager){
         this.userRepository = userRepository;
         this.entityManager = entityManager;
@@ -56,5 +55,10 @@ public class UserService {
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    public User getUserByAlias(String alias) {
+        return userRepository.findByCredentialsAlias(alias)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

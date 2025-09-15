@@ -15,7 +15,6 @@ public class CredentialsService {
     private final CredentialsRepository credentialsRepository;
     private final EntityManager entityManager;
 
-    @Autowired
     public CredentialsService(CredentialsRepository credentialsRepository, EntityManager entityManager){
         this.credentialsRepository = credentialsRepository;
         this.entityManager = entityManager;

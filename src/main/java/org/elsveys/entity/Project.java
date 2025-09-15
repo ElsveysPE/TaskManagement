@@ -2,6 +2,8 @@ package org.elsveys.entity;
 
 import jakarta.persistence.*;
 import org.elsveys.enums.StatusProject;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.time.LocalDate;
 @Entity
@@ -15,8 +17,9 @@ public class Project {
     private String name;
     @Column(name = "description", nullable = false, length = 50)
     private String description;
-    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    @Enumerated(EnumType.STRING)
     private StatusProject statusProject;
     @Column(name = "deadline", nullable = false)
     private LocalDate deadline;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,7 +16,6 @@ public class AssignmentService {
     private final AssignmentRepository assignmentRepository;
     private final EntityManager entityManager;
 
-    @Autowired
     public AssignmentService(AssignmentRepository assignmentRepository, EntityManager entityManager){
         this.assignmentRepository = assignmentRepository;
         this.entityManager = entityManager;
@@ -24,6 +24,18 @@ public class AssignmentService {
     public Assignment getAssignment(Integer id){
         return assignmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found"));
+    }
+
+    public List<Assignment> getUserAssignments(Integer taskId){
+        return assignmentRepository.findByTaskIdAndIsDeleted(taskId, false); // Only active
+    }
+
+    public List<Assignment> getAssignmentsOfUsers(Integer userId){
+        return assignmentRepository.findByUserIdAndIsDeleted(userId, false); // Only active
+    }
+    @Transactional
+    public void deleteAssignmentsByTaskId(Integer taskId) {
+        assignmentRepository.softDeleteByTaskId(taskId, LocalDate.now());
     }
 
     public Assignment createAssignment(Assignment assignment){
