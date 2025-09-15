@@ -9,8 +9,10 @@ spring:
     driver-class-name: org.postgresql.Driver
 
   jpa:
-    hibernate:
-      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     data:
       mongodb:
         auto-index-creation: false
@@ -19,10 +21,13 @@ spring:
         - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
         - org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
 
-
  # data:
  #   mongodb:
  #     uri: mongodb://localhost:27017/TaskManagement
+jwt:
+  secret: 0EZ9WtDPno10pFRiwSD6/5A1q5cRwzsaOEjpdu/CXFRy5+BD3P4/IqKAHPGwc3rM
+  expiration: 604800000
+
 
 server:
   port: 8081
